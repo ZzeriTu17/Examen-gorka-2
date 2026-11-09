@@ -13,9 +13,10 @@ def fn_EliminarAgotados_lst(productos_lst):
     Elimina del inventario los productos con stock 0
     y devuelve la lista de productos que quedan.
     """
-    for producto_dic in productos_lst:
-        if producto_dic["stock"] == 0:
-            productos_lst.remove(producto_dic)
+    productos_lst = [
+         producto_dic for producto_dic in productos_lst
+        if producto_dic["stock"] != 0
+]
 
     return productos_lst
 
@@ -132,3 +133,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+    # git add .
+# git commit -m "fix: corregir error"
