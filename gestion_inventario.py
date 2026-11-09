@@ -31,7 +31,7 @@ def fn_ValorPorCategoria_dic(productos_lst):
     for producto_dic in productos_lst:
         categoria_str = producto_dic["categoria"]
         precio_fl = producto_dic["precio"]
-        unidades_int = producto_dic["stock"]
+        unidades_int = producto_dic["stock"] # aqui ponia minimo y no stock, cuando claramente lo que se está comparando aqui es la cantidad de unidades por producto, no el minimo, esto solo dice las unidades disponibles, es decir, el stock
         valor_fl = precio_fl * unidades_int
 
         valores_dic[categoria_str] = valores_dic.get(categoria_str, 0) + valor_fl
@@ -67,7 +67,7 @@ def fn_ProductosAReponer_lst(productos_lst):
     for producto_dic in productos_lst:
         bajo_bool = producto_dic["stock"] <= producto_dic["minimo"]
 
-        if bajo_bool or not producto_dic["pendiente"]:
+        if bajo_bool and not producto_dic["pendiente"]:
             a_reponer_lst.append(producto_dic["nombre"])
 
     return a_reponer_lst
@@ -133,10 +133,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-    # git add .
-# git commit -m "fix: corregir error"
