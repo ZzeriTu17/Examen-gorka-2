@@ -67,13 +67,15 @@ def fn_ProductosAReponer_lst(productos_lst):
     for producto_dic in productos_lst:
         bajo_bool = producto_dic["stock"] <= producto_dic["minimo"]
 
-        if bajo_bool and not producto_dic["pendiente"]:
+        if bajo_bool and not producto_dic["pendiente"]: # aqui se chequeaba que el producto estuviera por debajo del minimo O que no estviese pendiente para ponerlo en pendiente. Lo he cambiado para que el producto se ponga en pendiente solo si este está por debajo del stock minimo Y si no está ya pendiente, haciendo que si no está pendiente no lo ponga en pendiente automaticamente si no está en minimo.
             a_reponer_lst.append(producto_dic["nombre"])
 
     return a_reponer_lst
 
 
-def fn_RegistrarIncidencia_lst(mensaje_str, historial_lst=[]):
+def fn_RegistrarIncidencia_lst(mensaje_str, historial_lst=None):
+    if historial_lst is None:
+        historial_lst = []
     """
     Añade una incidencia a un historial y lo devuelve.
     Si no se indica ningún historial, se empieza uno nuevo (vacío).
